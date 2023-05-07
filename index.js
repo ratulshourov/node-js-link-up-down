@@ -3,6 +3,7 @@
  */
 
 const http=require('http');
+const url=require('url');
 //app object module scaffolding
 const app ={};
 //confuguration
@@ -21,6 +22,11 @@ app.createServer=()=>{
 
 app.handleRequest=(req,res)=>{
 res.end('hello worlds!');
+const parse =url.parse(req.url,true);
+const pathname=parse.pathname;
+const trimPath=pathname.replace(/^\/+|\/+$/g, '');
+const headerObject=req.headers;
+console.log(headerObject);
 }
 
 app.createServer();
